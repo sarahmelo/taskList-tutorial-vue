@@ -1,18 +1,6 @@
 <template>
   <div id="app">
      <section class="hero is-primary is-bold is-fullheight">
-      <!-- Hero head: will stick at the top -->
-      <div class="hero-head">
-        <nav class="navbar">
-          <div class="container">
-            <div class="navbar-brand">
-              <a class="navbar-item">
-                VueJs Tutorial 1.0
-              </a>
-            </div>
-          </div>
-        </nav>
-      </div>
 
       <!-- Hero content: will be in the middle -->
       <div class="hero-body">
@@ -56,4 +44,10 @@ export default {
 </script>
 
 <style>
+
+.hero.is-primary.is-bold {
+  background-color: #e6e6e6;
+  background-image: none;
+}
+
 </style>

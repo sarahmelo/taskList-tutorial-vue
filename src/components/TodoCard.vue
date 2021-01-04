@@ -59,10 +59,18 @@ export default {
 
 <style>
 .card {
+  background-color: #f7f7f7;
+  
   border-radius: 10px;
+  box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.1);
 }
 .card-header-title {
   color: #636368;
+  font-family: 'Comfortaa', cursive;
+}
+
+.card-header {
+  box-shadow: none;
 }
 </style>
 view rawTodoCard.vue hosted with ❤ by GitHub

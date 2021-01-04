@@ -40,6 +40,7 @@ export default {
 </script>
 
 <style scoped>
+
 .input {
   border-left: 0;
   border-right: 0;
@@ -49,11 +50,26 @@ export default {
   border-bottom-width: 2px;
   box-shadow: none;
 }
+
+.input.is-primary{
+  background-color: transparent;
+  border-color: #e6e6e6;
+  font-family: 'Montserrat', sans-serif;
+
+  transition: 200ms;
+}
+
 .input.is-primary:focus {
   box-shadow: none;
+  border-color: rgb(168, 168, 168);
 }
 .add-button {
   border-radius: 50%;
+  box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.1), -2px -2px 6px white;
+}
+
+.button.is-success {
+  background-color:#8da8bb;
 }
 </style>
 view rawNovoTodo.vue hosted with ❤ by GitHub

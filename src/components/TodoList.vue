@@ -6,8 +6,7 @@
         <div class="field is-grouped"  v-for="(tarefa, index) in tarefas">
           <p class="control">
             <a class="button is-rounded is-small check-button" @click="check(index)">
-              <span class="icon is-small">
-              </span>
+              <span class="button-marking"> <img :src="image"/></span>
             </a>
           </p>
           <p class="control is-expanded" :class="{'checked': tarefa.checked}">{{tarefa.description}}</p>
@@ -25,6 +24,9 @@
 </template>
 
 <script>
+import image from "../assets/checked.svg"
+
+
 export default {
   name: 'todo-list',
   props: ['tarefas'],
@@ -44,8 +46,33 @@ export default {
 </script>
 
 <style scoped>
+
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.checked[data-v-3de47834]{
+  text-decoration: line-through;
+  color: #c1c1c1;
+}
+
 .button {
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
+}
+
+.button.is-danger {
+  background-color: #ff819a;
+}
+.button.is-danger:hover {
+  background-color: #fb5375;
+  transition: 200ms;
+}
+
+
+.button:enabled {
+  background-color: black;
 }
 .checked {
   text-decoration: line-through;
