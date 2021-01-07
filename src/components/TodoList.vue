@@ -24,8 +24,6 @@
 </template>
 
 <script>
-import image from "../assets/checked.svg"
-
 
 export default {
   name: 'todo-list',
@@ -70,7 +68,6 @@ p {
   transition: 200ms;
 }
 
-
 .button:enabled {
   background-color: black;
 }
@@ -78,4 +75,3 @@ p {
   text-decoration: line-through;
 }
 </style>
-view rawTodoList.vue hosted with ❤ by GitHub

@@ -2,7 +2,7 @@
 <template>
   <div class="card">
     <header class="card-header">
-      <p class="card-header-title has-text-left">
+      <p class="card-header-title has-text-left" :class="mode">
        {{hoje}}
       </p>
       <div class="has-text-right">
@@ -11,7 +11,7 @@
     </header>
     <div class="card-content">
       <div class="content">
-        <novo-todo @novaTarefa="adicionarTarefa"></novo-todo>
+        <novo-todo @novaTarefa="adicionarTarefa" :mode="mode" @toggle="toggle"></novo-todo>
       </div>
       <div class="content">
         <todo-list :tarefas="tarefas" @check="checkTarefa" @remover="removerTarefa"></todo-list>
@@ -23,11 +23,17 @@
 <script>
 import NovoTodo from './NovoTodo'
 import TodoList from './TodoList'
+import Toggle from './Toggle'
+import App from '../App'
+
 export default {
   name: 'todo-card',
+  props: ['mode'],
+
   components: {
     NovoTodo,
-    TodoList
+    TodoList,
+    Toggle
   },
   data () {
     return {
@@ -61,8 +67,15 @@ export default {
 .card {
   background-color: #f7f7f7;
   
+  width: 400px;
   border-radius: 10px;
   box-shadow: 2px 2px 4px rgb(0, 0, 0, 0.1);
+}
+
+.content {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 .card-header-title {
   color: #636368;
@@ -72,5 +85,19 @@ export default {
 .card-header {
   box-shadow: none;
 }
+
+p.card-header-title {
+  background-color: #c3bfc8;
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1);
+}
+
+p.card-header-title.has-text-left {
+  box-shadow: 0 0.5em 1em -0.125em rgba(10, 10, 10, 0.1);
+    background-color: #6388d2;
+    color: white;
+}
+p.card-header-title.has-text-left.dark{
+  background: #ff4c99;
+}
+
 </style>
-view rawTodoCard.vue hosted with ❤ by GitHub

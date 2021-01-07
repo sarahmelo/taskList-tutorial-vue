@@ -8,7 +8,7 @@
              <input class="input is-primary has-text-centered" type="text" placeholder="Nova tarefa..." v-model="tarefa">
           </p>
           <p class="control">
-            <a class="button is-success add-button" @click="enviarTarefa" >
+            <a class="button is-success add-button" @click="enviarTarefa" :class="mode">
               <span class="icon is-small">
                 <i class="fa fa-plus"></i>
               </span>
@@ -21,8 +21,12 @@
 </template>
 
 <script>
+
+
+
 export default {
   name: 'novo-todo',
+  props: ['mode'],
   data () {
     return {
       tarefa: ''
@@ -39,7 +43,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
+.row {
+  display: flex;
+}
 
 .input {
   border-left: 0;
@@ -69,7 +77,14 @@ export default {
 }
 
 .button.is-success {
-  background-color:#8da8bb;
+  background-color:#6388d2;
 }
+.button.is-success:hover {
+  background-color:#6388d2;
+}
+
+.button.is-success.dark {
+  background-color:#ff4c99;
+}
+
 </style>
-view rawNovoTodo.vue hosted with ❤ by GitHub
