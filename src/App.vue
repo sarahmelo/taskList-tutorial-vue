@@ -1,147 +1,68 @@
 <template>
-  <v-app id="inspire">
-    <v-app-bar dense flat app color="primary" class="pa-0"> </v-app-bar>
+     <section class="hero is-primary is-bold is-fullheight" :class="mode">
 
-    <v-main>
-      <v-container class="fill-height align-content-start">
-        <v-row align="center" class="justify-space-between pa-3 mt-3">
-          <v-col col="12" xs="2" sm="3" md="3" lg="3" xl="2" class="px-0">
-            <v-text-field
-              class="text-area rounded-0"
-              dense
-              solo
-              flat
-              v-model="search"
-              label="nome ou e-mail"
-              hide-details
-              append-icon="mdi-magnify"
-            />
-          </v-col>
-          <!-- <v-spacer class="space"></v-spacer> -->
+      <!-- Hero content: will be in the middle -->
+      <div class="hero-body">
+        <toggle :mode="mode" @toggle="toggle"></toggle>
+        <div class="container has-text-centered">
+          <div class="row">
+            <div class="columns">
+              <div class="column is-half is-offset-one-quarter">
+                <todo-card :mode="mode" @toggle="toggle"></todo-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-          <v-col cols="5" sm="3" md="2" xl="2" class="justify-center ml-15">
-            <v-row class="align-center" style="flex-wrap: nowrap">
-              <v-select
-                small-chips
-                color="primary"
-                label="Filtro"
-                chips
-                hide-details
-                standard
-                dense
-                :items="status"
-                v-model="currentStatus"
-              />
-              <NewUser v-on:dataNewUser="registerUser" />
-            </v-row>
-          </v-col>
-        </v-row>
-
-        <UsersList
-          :usersList="usersBySearch"
-          :search="search"
-          @remove="removeUser"
-        ></UsersList>
-      </v-container>
-    </v-main>
-  </v-app>
+    </section>
 </template>
 
 <script>
-import NewUser from "./components/NewUser";
-import UsersList from "./components/users-list/UsersList";
-
+import TodoCard from './components/TodoCard'
+import Toggle from './components/Toggle'
 export default {
-  name: "App",
-
+  name: 'app',
   components: {
-    UsersList,
-    NewUser,
+    TodoCard,
+    Toggle
   },
-
-  data: () => ({
-    search: "",
-    status: ["Todos", "Ativo", "Inativo"],
-    currentStatus: "",
-
-    users: [
-      {
-        name: "Ana Santos Sá",
-        email: "anasantossa@gmail.com",
-        phone: "(21)97957895",
-        age: 31,
-        lastAvaliation: "12/10/2019",
-        avatar: null,
-        isActive: true,
-      },
-      {
-        name: "Jel Chibuzo",
-        email: "sorela@gmail.com",
-        phone: "(21)97957895",
-        age: 31,
-        lastAvaliation: "12/10/2019",
-        avatar: null,
-        isActive: false,
-      },
-      {
-        name: "Ana Santos Sá",
-        email: "anasantossa@gmail.com",
-        phone: "(21)97957895",
-        age: 31,
-        lastAvaliation: "12/10/2019",
-        avatar: null,
-        isActive: true,
-      },
-    ],
-  }),
-
-  computed: {
-    usersBySearch: function () {
-      return this.usersByStatus.filter((user) => {
-        return user.name.match(this.search) || user.email.match(this.search);
-      });
-    },
-    usersByStatus: function () {
-      return this.users.filter((user) => {
-        if (this.currentStatus == "Ativo") {
-          return user.isActive;
-        } else if (this.currentStatus == "Inativo") {
-          return !user.isActive;
-        }
-        return true;
-      });
-    },
+  data () {
+    return {
+      mode: "dark"
+    }
   },
-
-  mounted() {
-    let usersJson = JSON.stringify(this.users);
-    localStorage.setItem("users", usersJson);
-  },
-
   methods: {
-    sendProfile() {
-      if (localStorage.users) {
-        this.$emit("profile", this.users);
+    toggle() {
+      if (this.mode === "dark") {
+        this.mode = ""
+      } else {
+        this.mode = "dark"
       }
-    },
-    registerUser(fields) {
-      this.users.unshift(fields);
-      let usersJson = JSON.stringify(this.users);
-      localStorage.setItem("users", usersJson);
-      localStorage.getItem("users");
-    },
-    removeUser(index) {
-      this.users.splice(index, 1);
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style>
-div.v-toolbar__content {
-  padding: 0 !important;
+.hero-body {
+  flex-flow: column;
 }
-#inspire {
-  background-color: #f5f5f5;
+.hero.is-primary.is-bold {
+  background-color: #e6e6e6;
+  background-image: none;
 }
-</style>
+.hero.is-primary.is-bold.dark {
+  background:#17161b;
+}
+.container.has-text-centered {
+  width: 100%;
+  display: flex;
+  place-content: center;
+}
+.column.is-half.is-offset-one-quarter {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  margin: auto;
+}
